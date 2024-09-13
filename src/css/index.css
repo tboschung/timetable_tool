@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  #courseList {
+    margin-top: 20px;
+  }
+  
+  .course-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  button.toggle-btn {
+    padding: 5px 10px;
+  }
+  
+
+      /* General table styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #000;
+      padding: 10px;
+      text-align: center;
+      vertical-align: top; /* Ensure that content stays at the top */
+    }
+
+    th {
+      background-color: #f0f0f0;
+      font-weight: bold;
+    }
+
+    .time-slot {
+      height: 60px;
+    }
+
+    /* Make sure all columns (including time) are evenly spaced */
+    table th, table td {
+      width: calc(100% / 6);
+    }
+
+    /* Add specific width for the first column (Time) */
+    table th:first-child, table td:first-child {
+      width: 10%;
+    }
+
+    /* Styling for editable cells */
+    .editable-cell {
+      width: 100%;
+      height: 100%;
+      padding: 5px;
+      border: none;
+      outline: none;
+      background-color: #fff;
+      resize: none;
+    }
+
+    .editable-cell:focus {
+      background-color: #e0f7fa; /* Highlight the cell being edited */
+    }
+  </style>

@@ -1,0 +1,27 @@
+{
+    "name": "timetable-tool",
+    "version": "1.0.0",
+    "description": "A timetable tool where users can manage and display their courses",
+    "scripts": {
+      "build": "tsc",
+      "start": "lite-server" 
+    },
+    "devDependencies": {
+      "typescript": "^4.0.0",
+      "lite-server": "^2.5.4"  
+    },
+    "lite-server": {
+      "baseDir": "src",    
+      "files": [
+        "./dist/**/*.js",  
+        "./src/**/*.html"  
+      ],
+      "server": {
+        "baseDir": "./src",  
+        "routes": {
+          "/dist": "dist"     
+        }
+      }
+    }
+  }
+  

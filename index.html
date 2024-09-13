@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timetable Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    #courseList {
+      margin-top: 20px;
+    }
+
+    .course-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    button.toggle-btn {
+      padding: 5px 10px;
+    }
+
+    .planner {
+      display: grid;
+      grid-template-columns: 100px repeat(5, 1fr);
+      grid-template-rows: 50px repeat(13, 50px);
+      gap: 1px;
+      background-color: #ccc;
+    }
+
+    .planner div {
+      background-color: #fff;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    .header {
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+    }
+
+    .hour-label {
+      background-color: #f0f0f0;
+      font-weight: bold;
+    }
+
+    .day-label {
+      background-color: #2196F3;
+      color: black;
+      font-weight: bold;
+    }
+
+    .event {
+      background-color: #FFEB3B;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Course Timetable</h1>
+
+  <!-- Form to add new courses -->
+  <form id="courseForm">
+    <label for="courseName">Course Name:</label>
+    <input type="text" id="courseName" required>
+
+    <label for="courseType">Type:</label>
+    <select id="courseType" required>
+      <option value="V">V</option>
+      <option value="U">U</option>
+      <option value="A">A</option>
+    </select>
+
+    <label for="courseDay">Day:</label>
+    <select id="courseDay" required>
+      <option value="monday">Monday</option>
+      <option value="tuesday">Tuesday</option>
+      <option value="wednesday">Wednesday</option>
+      <option value="thursday">Thursday</option>
+      <option value="friday">Friday</option>
+    </select>
+
+    <label for="courseFrom">From:</label>
+    <select id="courseFrom"></select>
+    <label for="courseTo">To:</label>
+    <select id="courseTo"></select>
+    <script>
+      function createOption(value, text) {
+        var option = document.createElement('option');
+        option.text = text;
+        option.value = value;
+        return option;
+      }
+      var fromSelect = document.getElementById('courseFrom');
+      for (var i = 8; i <= 20; i++) {
+        fromSelect.add(createOption(i, i));
+      }
+      var toSelect = document.getElementById('courseTo');
+      for (var i = 9; i < 20; i++) {
+        toSelect.add(createOption(i, i));
+      }    
+    </script>
+
+    <button id="add">Add Course</button>
+
+    <button id="addExisting">Add To Existing Course</button>
+  </form>
+
+  <!-- Section to display course list -->
+  <h2>Your Courses</h2>
+
+  <div id="courseList"></div>
+
+  <script src="dist/app.js" type="module"></script>
+
+  <div class="planner">
+    <!-- Time Slot Labels -->
+    <div></div> <!-- Empty corner -->
+    <div class="day-label">Monday</div>
+    <div class="day-label">Tuesday</div>
+    <div class="day-label">Wednesday</div>
+    <div class="day-label">Thursday</div>
+    <div class="day-label">Friday</div>
+
+    <!-- Time Rows -->
+    <div class="hour-label">8:00 AM</div>
+    <div id="monday-8"></div>
+    <div id="tuesday-8"></div>
+    <div id="wednesday-8"></div>
+    <div id="thursday-8"></div>
+    <div id="friday-8"></div>
+
+    <div class="hour-label">9:00 AM</div>
+    <div id="monday-9"></div>
+    <div id="tuesday-9" class="event">Meeting</div>
+    <div id="wednesday-9"></div>
+    <div id="thursday-9"></div>
+    <div id="friday-9"></div>
+
+    <div class="hour-label">10:00 AM</div>
+    <div id="monday-10"></div>
+    <div id="tuesday-10"></div>
+    <div id="wednesday-10" class="event">Project Review</div>
+    <div id="thursday-10"></div>
+    <div id="friday-10"></div>
+
+    <div class="hour-label">11:00 AM</div>
+    <div id="monday-11"></div>
+    <div id="tuesday-11"></div>
+    <div id="wednesday-11"></div>
+    <div id="thursday-11"></div>
+    <div id="friday-11"></div>
+
+    <div class="hour-label">12:00 PM</div>
+    <div id="monday-12"></div>
+    <div id="tuesday-12" class="event">Lunch</div>
+    <div id="wednesday-12"></div>
+    <div id="thursday-12"></div>
+    <div id="friday-12"></div>
+
+    <div class="hour-label">1:00 PM</div>
+    <div id="monday-13"></div>
+    <div id="tuesday-13"></div>
+    <div id="wednesday-13"></div>
+    <div id="thursday-13"></div>
+    <div id="friday-13" class="event">Team Call</div>
+
+    <div class="hour-label">2:00 PM</div>
+    <div id="monday-14"></div>
+    <div id="tuesday-14"></div>
+    <div id="wednesday-14"></div>
+    <div id="thursday-14"></div>
+    <div id="friday-14"></div>
+
+    <div class="hour-label">3:00 PM</div>
+    <div id="monday-15"></div>
+    <div id="tuesday-15"></div>
+    <div id="wednesday-15"></div>
+    <div id="thursday-15"></div>
+    <div id="friday-15"></div>
+
+    <div class="hour-label">4:00 PM</div>
+    <div id="monday-16"></div>
+    <div id="tuesday-16"></div>
+    <div id="wednesday-16"></div>
+    <div id="thursday-16"></div>
+    <div id="friday-16"></div>
+
+    <div class="hour-label">5:00 PM</div>
+    <div id="monday-17"></div>
+    <div id="tuesday-17"></div>
+    <div id="wednesday-17"></div>
+    <div id="thursday-17"></div>
+    <div id="friday-17"></div>
+
+    <div class="hour-label">6:00 PM</div>
+    <div id="monday-18"></div>
+    <div id="tuesday-18"></div>
+    <div id="wednesday-18"></div>
+    <div id="thursday-18"></div>
+    <div id="friday-18"></div>
+
+    <div class="hour-label">7:00 PM</div>
+    <div id="monday-19"></div>
+    <div id="tuesday-19"></div>
+    <div id="wednesday-19"></div>
+    <div id="thursday-19"></div>
+    <div id="friday-19"></div>
+
+    <div class="hour-label">8:00 PM</div>
+    <div id="monday-20"></div>
+    <div id="tuesday-20"></div>
+    <div id="wednesday-20"></div>
+    <div id="thursday-20"></div>
+    <div id="friday-20"></div>
+  </div>
+
+</body>
+
+</html>
